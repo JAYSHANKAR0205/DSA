@@ -1,8 +1,8 @@
 class Solution:
     def decompressRLElist(self, nums: List[int]) -> List[int]:
-        lst=[]
-        for i in range(0,len(nums),2):
-            while nums[i]>0:
-                lst.append(nums[i+1])
-                nums[i]-=1
-        return lst
+        decompress_lst=[]
+        for i in range(len(nums)//2):
+                freq=nums[2*i]
+                val=nums[2*i+1]
+                decompress_lst.extend([val]*freq)
+        return decompress_lst
