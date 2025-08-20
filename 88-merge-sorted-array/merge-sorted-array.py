@@ -4,21 +4,21 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # Brute Force Ever 
-        dic={}
-        lst=[]
-        for num in nums1[:m]:
-            if num in dic:
-                dic[num]+=1
+        # Optimal Solution with time O(m+n) and without any extra space
+
+        i=m-1
+        j=n-1
+        k=(m+n)-1
+        while i>=0 and j>=0:
+            if nums1[i]>nums2[j]:
+                nums1[k]=nums1[i]
+                i=i-1
             else:
-                dic[num]=1
-        for num in nums2[:n]:
-            if num in dic:
-                dic[num]+=1
-            else:
-                dic[num]=1
-        for item,count in dic.items():
-            lst.extend([item]*count)
-        lst.sort()
-        for i in range(len(lst)):
-            nums1[i]=lst[i]
+                nums1[k]=nums2[j]
+                j=j-1
+            k=k-1
+        while j>=0:
+            nums1[k]=nums2[j]
+            j=j-1
+            k=k-1
+        
